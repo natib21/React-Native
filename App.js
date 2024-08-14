@@ -9,7 +9,9 @@ export default function App() {
   const addGoalHandler = () => {
     setCourseGoals((current) => [...current, enteredGoalText]);
   };
-
+  const cancel = (id) => {
+    console.log(id);
+  };
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
@@ -22,7 +24,9 @@ export default function App() {
       </View>
       <View style={styles.goalsContainer}>
         {courseGoals.map((goal, id) => (
-          <Text key={id}>{goal}</Text>
+          <View key={id} style={styles.textItem}>
+            <Text style={styles.text}>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -53,5 +57,18 @@ const styles = StyleSheet.create({
   },
   goalsContainer: {
     flex: 5,
+  },
+  textItem: {
+    margin: 8,
+
+    borderRadius: 6,
+    backgroundColor: "#5e0acc",
+    padding: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  text: {
+    color: "white",
   },
 });
