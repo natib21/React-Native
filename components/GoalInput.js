@@ -1,16 +1,23 @@
-import { StyleSheet, View, Button, TextInput } from "react-native";
+import { StyleSheet, View, Button, TextInput, Modal } from "react-native";
 
-const GoalInput = ({ addGoalHandler, goalInputHandler, enteredGoalText }) => {
+const GoalInput = ({
+  addGoalHandler,
+  goalInputHandler,
+  enteredGoalText,
+  visible,
+}) => {
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Your Cource Goal"
-        style={styles.textInput}
-        onChangeText={goalInputHandler}
-        value={enteredGoalText}
-      />
-      <Button title="Add Goal" onPress={addGoalHandler} />
-    </View>
+    <Modal visible={visible} animationType="slide">
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Your Cource Goal"
+          style={styles.textInput}
+          onChangeText={goalInputHandler}
+          value={enteredGoalText}
+        />
+        <Button title="Add Goal" onPress={addGoalHandler} />
+      </View>
+    </Modal>
   );
 };
 export default GoalInput;
