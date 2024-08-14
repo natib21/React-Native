@@ -16,6 +16,11 @@ export default function App() {
     setEnteredGoalText("");
   };
 
+  const Delete = (id) => {
+    setCourseGoals((current) => {
+      return current.filter((goal) => goal.id !== id);
+    });
+  };
   return (
     <View style={styles.appContainer}>
       <GoalInput
@@ -27,7 +32,13 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return <GoalItem itemData={itemData.item.text} />;
+            return (
+              <GoalItem
+                itemData={itemData.item.text}
+                id={itemData.item.id}
+                onDelete={Delete}
+              />
+            );
           }}
           alwaysBounceHorizontal={false}
         />
