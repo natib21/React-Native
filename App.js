@@ -1,6 +1,7 @@
 import { StyleSheet, View, FlatList, Button } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
+import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -31,37 +32,40 @@ export default function App() {
     });
   };
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#210644"
-        onPress={startAddGoalHandler}
-      />
-      {modalIsVisible && (
-        <GoalInput
-          goalInputHandler={goalInputHandler}
-          enteredGoalText={enteredGoalText}
-          addGoalHandler={addGoalHandler}
-          visible={modalIsVisible}
-          closeModal={endAddGoalHandler}
+    <>
+      <StatusBar style="light" />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#210644"
+          onPress={startAddGoalHandler}
         />
-      )}
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItem
-                itemData={itemData.item.text}
-                id={itemData.item.id}
-                onDelete={Delete}
-              />
-            );
-          }}
-          alwaysBounceHorizontal={false}
-        />
+        {modalIsVisible && (
+          <GoalInput
+            goalInputHandler={goalInputHandler}
+            enteredGoalText={enteredGoalText}
+            addGoalHandler={addGoalHandler}
+            visible={modalIsVisible}
+            closeModal={endAddGoalHandler}
+          />
+        )}
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItem
+                  itemData={itemData.item.text}
+                  id={itemData.item.id}
+                  onDelete={Delete}
+                />
+              );
+            }}
+            alwaysBounceHorizontal={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
     flex: 1,
+    backgroundColor: "#1e085a",
   },
 
   goalsContainer: {
