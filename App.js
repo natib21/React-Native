@@ -10,6 +10,9 @@ export default function App() {
   const startAddGoalHandler = () => {
     setModalIsVisible(true);
   };
+  const endAddGoalHandler = () => {
+    setModalIsVisible(false);
+  };
   const goalInputHandler = (e) => {
     setEnteredGoalText(e);
   };
@@ -19,6 +22,7 @@ export default function App() {
       { text: enteredGoalText, key: Math.random().toString() },
     ]);
     setEnteredGoalText("");
+    endAddGoalHandler();
   };
 
   const Delete = (id) => {
@@ -39,6 +43,7 @@ export default function App() {
           enteredGoalText={enteredGoalText}
           addGoalHandler={addGoalHandler}
           visible={modalIsVisible}
+          closeModal={endAddGoalHandler}
         />
       )}
       <View style={styles.goalsContainer}>
